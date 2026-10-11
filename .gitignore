@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.fourthread/
+fourthread.yaml
+MEMORY.md
