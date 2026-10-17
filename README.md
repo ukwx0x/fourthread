@@ -75,6 +75,13 @@ safety:
   `.fourthread/memory/<bot-id>.md` is loaded into that bot's prompt only.
 - Swap any bot's `model` in `fourthread.yaml` and restart — memory and thread
   come from disk, not the model.
+- **Tools (v0.2.0):** bots may emit `@tool <name> <args-json>` lines. Built-ins:
+  `fs.read`, `fs.write` (both sandboxed inside the workspace root), and
+  `mem.append` (writes long-term memory). Results are appended to the shared
+  thread so every bot sees them; the bot is called again to act on them.
+- Model endpoint calls retry (3 attempts, backoff) on 429/5xx/network errors
+  and abort after a 30 s timeout per request, so flaky local models don't kill
+  a turn.
 
 ## Development
 
