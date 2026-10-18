@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here.
 
+## [0.2.1] — 2026-10-18
+
+Install fix for Node 26.
+
+### Fixed
+- `better-sqlite3` bumped `^11.10.0` → `^13.0.3`: v11 has no prebuilt binary
+  for Node 26 (ABI v147) and its native code no longer compiles against the
+  Node 26 V8 API, so `npm install -g fourthread` produced a package whose
+  SQLite storage failed at runtime. v13 ships Node 26 support and was verified
+  on Node v26.11.1 (native binding loads, REPL starts, context storage works).
+- `allowScripts` keys changed from version-pinned (`better-sqlite3@11.10.0`)
+  to bare package names (`better-sqlite3`, `esbuild`) so npm's install-script
+  gating approves the dependency's build script regardless of resolved version.
+
 ## [0.2.0] — 2026-10-17
 
 M5 vertical slice: tools + adapter hardening.
